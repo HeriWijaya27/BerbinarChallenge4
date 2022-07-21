@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             Hand.Batu -> {
                 binding.ivUserBatu.setBackgroundColor(Color.GREEN)
                 binding.ivUserKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserGunting.setBackgroundColor(Color.TRAN SPARENT)
+                binding.ivUserGunting.setBackgroundColor(Color.TRANSPARENT)
             }
             Hand.Kertas -> {
                 binding.ivUserKertas.setBackgroundColor(Color.GREEN)
