@@ -118,19 +118,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startBattle(player: Choice, enemy: Choice): String {
+    private fun startBattle(playerChoice: Choice, enemyChoice: Choice): String {
         binding.tvResult.setTextColor(Color.WHITE)
         binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28F)
         val p1Win = "PEMAIN 1 MENANG"
         val p2Win = "PEMAIN 2 MENANG"
         return when {
-            enemy == player -> {
+            enemyChoice == playerChoice -> {
                 binding.tvResult.setBackgroundColor(Color.CYAN)
                 "DRAW"
             }
 
-            player == Choice.Rock -> {
-                if (enemy == Choice.Paper) {
+            playerChoice == Choice.Rock -> {
+                if (enemyChoice == Choice.Paper) {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
                     p2Win
                 } else {
@@ -138,8 +138,8 @@ class MainActivity : AppCompatActivity() {
                     p1Win
                 }
             }
-            player == Choice.Paper -> {
-                if (enemy == Choice.Scissor) {
+            playerChoice == Choice.Paper -> {
+                if (enemyChoice == Choice.Scissor) {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
                     p2Win
                 } else {
@@ -147,8 +147,8 @@ class MainActivity : AppCompatActivity() {
                     p1Win
                 }
             }
-            player == Choice.Scissor -> {
-                if (enemy == Choice.Rock) {
+            playerChoice == Choice.Scissor -> {
+                if (enemyChoice == Choice.Rock) {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
                     p2Win
                 } else {
