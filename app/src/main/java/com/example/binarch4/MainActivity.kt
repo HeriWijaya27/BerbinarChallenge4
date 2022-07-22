@@ -10,32 +10,34 @@ import com.example.binarch4.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var userChoice: Choice? = null
+    private var playerChoice: Choice? = null
     private var enemyChoice: Choice? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
         binding.ivRockUser.setOnClickListener {
-            userChoice = Choice.Rock
+            playerChoice = Choice.Rock
             userChoiceUi()
-            Log.d(TAG, "onCreate: Anda Mengklik Batu")
+            Log.d(TAG,"You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
         }
         binding.ivScissorUser.setOnClickListener {
-            userChoice = Choice.Scissor
+            playerChoice = Choice.Scissor
             userChoiceUi()
-            Log.d(TAG, "onCreate: Anda Mengklik Gunting")
+            Log.d(TAG,"You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
         }
         binding.ivPaperUser.setOnClickListener {
-            userChoice = Choice.Paper
+            playerChoice = Choice.Paper
             userChoiceUi()
-            Log.d(TAG, "onCreate: Anda Mengklik Kertas")
+            Log.d(TAG,"You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
         }
         binding.ivReset.setOnClickListener {
             resetAll()
-            Log.d(TAG, "onCreate: Anda Mengklik Reset")
+
         }
 
     }
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvResult.setTextColor(Color.RED)
         binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 64F)
         binding.tvResult.setBackgroundColor(Color.TRANSPARENT)
-        userChoice = null
+        playerChoice = null
         enemyChoice = null
         val result = "VS"
         binding.tvResult.text = result
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun userChoiceUi() {
-        when (userChoice) {
+        when (playerChoice) {
             Choice.Rock -> {
                 binding.ivRockUser.setBackgroundColor(Color.CYAN)
                 binding.ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
@@ -80,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun comChoiceUi() {
-        if (userChoice != null) {
+        if (playerChoice != null) {
             enemyChoice = Choice.random()
         }
         when (enemyChoice) {
@@ -106,10 +108,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        if (userChoice != null && enemyChoice != null) {
-            val result = startBattle(userChoice!!, enemyChoice!!)
+        if (playerChoice != null && enemyChoice != null) {
+            val result = startBattle(playerChoice!!, enemyChoice!!)
             binding.tvResult.text = result
-            Log.d(TAG, "updateHandUICom: $result")
+            Log.i(TAG, "result: $result")
         }
     }
 
