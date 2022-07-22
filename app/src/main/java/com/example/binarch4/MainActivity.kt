@@ -10,27 +10,27 @@ import com.example.binarch4.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var selectedChoice: Choice? = null
-    private var selectedChoiceCom: Choice? = null
+    private var userChoice: Choice? = null
+    private var enemyChoice: Choice? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.ivUserBatu.setOnClickListener {
-            selectedChoice = Choice.Rock
-            updateHandUI()
+        binding.ivRockUser.setOnClickListener {
+            userChoice = Choice.Rock
+            userChoiceUi()
             Log.d(TAG, "onCreate: Anda Mengklik Batu")
         }
-        binding.ivUserGunting.setOnClickListener {
-            selectedChoice = Choice.Scissor
-            updateHandUI()
+        binding.ivScissorUser.setOnClickListener {
+            userChoice = Choice.Scissor
+            userChoiceUi()
             Log.d(TAG, "onCreate: Anda Mengklik Gunting")
         }
-        binding.ivUserKertas.setOnClickListener {
-            selectedChoice = Choice.Paper
-            updateHandUI()
+        binding.ivPaperUser.setOnClickListener {
+            userChoice = Choice.Paper
+            userChoiceUi()
             Log.d(TAG, "onCreate: Anda Mengklik Kertas")
         }
         binding.ivReset.setOnClickListener {
@@ -41,48 +41,49 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetAll() {
-        binding.tvHasil.setTextColor(Color.RED)
-        binding.tvHasil.setTextSize(TypedValue.COMPLEX_UNIT_SP, 64F)
-        binding.tvHasil.setBackgroundColor(Color.TRANSPARENT)
-        selectedChoice = null
-        selectedChoiceCom = null
-        val hasil = "VS"
-        binding.tvHasil.text = hasil
-        updateHandUI()
+        binding.tvResult.setTextColor(Color.RED)
+        binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 64F)
+        binding.tvResult.setBackgroundColor(Color.TRANSPARENT)
+        userChoice = null
+        enemyChoice = null
+        val result = "VS"
+        binding.tvResult.text = result
+        userChoiceUi()
     }
 
-    private fun updateHandUI() {
-        when (selectedChoice) {
+
+    private fun userChoiceUi() {
+        when (userChoice) {
             Choice.Rock -> {
-                binding.ivUserBatu.setBackgroundColor(Color.CYAN)
-                binding.ivUserKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserGunting.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivRockUser.setBackgroundColor(Color.CYAN)
+                binding.ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
             }
             Choice.Paper -> {
-                binding.ivUserKertas.setBackgroundColor(Color.CYAN)
-                binding.ivUserBatu.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserGunting.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivPaperUser.setBackgroundColor(Color.CYAN)
+                binding.ivRockUser.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
             }
             Choice.Scissor -> {
-                binding.ivUserKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserBatu.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserGunting.setBackgroundColor(Color.CYAN)
+                binding.ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivRockUser.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorUser.setBackgroundColor(Color.CYAN)
             }
             else -> {
-                binding.ivUserKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserBatu.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivUserGunting.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivRockUser.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
             }
         }
-        updateHandUICom()
+        comChoiceUi()
 
     }
 
-    private fun updateHandUICom() {
-        if (selectedChoice != null) {
-            selectedChoiceCom = Choice.random()
+    private fun comChoiceUi() {
+        if (userChoice != null) {
+            enemyChoice = Choice.random()
         }
-        when (selectedChoiceCom) {
+        when (enemyChoice) {
             Choice.Rock -> {
                 binding.ivComBatu.setBackgroundColor(Color.CYAN)
                 binding.ivComKertas.setBackgroundColor(Color.TRANSPARENT)
@@ -105,48 +106,48 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        if (selectedChoice != null && selectedChoiceCom != null) {
-            val hasil = startBattle(selectedChoice!!, selectedChoiceCom!!)
-            binding.tvHasil.text = hasil
-            Log.d(TAG, "updateHandUICom: $hasil")
+        if (userChoice != null && enemyChoice != null) {
+            val result = startBattle(userChoice!!, enemyChoice!!)
+            binding.tvResult.text = result
+            Log.d(TAG, "updateHandUICom: $result")
         }
     }
 
-    private fun startBattle(pemain1: Choice, pemain2: Choice): String {
-        binding.tvHasil.setTextColor(Color.WHITE)
-        binding.tvHasil.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28F)
+    private fun startBattle(player: Choice, enemy: Choice): String {
+        binding.tvResult.setTextColor(Color.WHITE)
+        binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28F)
         val p1Win = "PEMAIN 1 MENANG"
         val p2Win = "PEMAIN 2 MENANG"
         return when {
-            pemain2 == pemain1 -> {
-                binding.tvHasil.setBackgroundColor(Color.CYAN)
+            enemy == player -> {
+                binding.tvResult.setBackgroundColor(Color.CYAN)
                 "DRAW"
             }
 
-            pemain1 == Choice.Rock -> {
-                if (pemain2 == Choice.Paper) {
-                    binding.tvHasil.setBackgroundColor(Color.GREEN)
+            player == Choice.Rock -> {
+                if (enemy == Choice.Paper) {
+                    binding.tvResult.setBackgroundColor(Color.GREEN)
                     p2Win
                 } else {
-                    binding.tvHasil.setBackgroundColor(Color.GREEN)
+                    binding.tvResult.setBackgroundColor(Color.GREEN)
                     p1Win
                 }
             }
-            pemain1 == Choice.Paper -> {
-                if (pemain2 == Choice.Scissor) {
-                    binding.tvHasil.setBackgroundColor(Color.GREEN)
+            player == Choice.Paper -> {
+                if (enemy == Choice.Scissor) {
+                    binding.tvResult.setBackgroundColor(Color.GREEN)
                     p2Win
                 } else {
-                    binding.tvHasil.setBackgroundColor(Color.GREEN)
+                    binding.tvResult.setBackgroundColor(Color.GREEN)
                     p1Win
                 }
             }
-            pemain1 == Choice.Scissor -> {
-                if (pemain2 == Choice.Rock) {
-                    binding.tvHasil.setBackgroundColor(Color.GREEN)
+            player == Choice.Scissor -> {
+                if (enemy == Choice.Rock) {
+                    binding.tvResult.setBackgroundColor(Color.GREEN)
                     p2Win
                 } else {
-                    binding.tvHasil.setBackgroundColor(Color.GREEN)
+                    binding.tvResult.setBackgroundColor(Color.GREEN)
                     p1Win
                 }
 
