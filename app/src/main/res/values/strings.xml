@@ -5,4 +5,7 @@
     <string name="computer">COMPUTER</string>
     <string name="choose_your_item">CHOOSE YOUR ITEM</string>
     <string name="player_score">PLAYER SCORE</string>
+    <string name="input_your_name">INPUT YOUR NAME</string>
+    <string name="start_game">START GAME</string>
+    <string name="made_by_mohamad_heri_wijaya">Made By Mohamad Heri Wijaya</string>
 </resources>

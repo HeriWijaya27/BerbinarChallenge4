@@ -23,17 +23,20 @@ class MainActivity : AppCompatActivity() {
         binding.ivRockUser.setOnClickListener {
             playerChoice = Choice.Rock
             userChoiceUi()
-            Log.d(TAG,"You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+            Log.d(TAG,
+                "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
         }
         binding.ivScissorUser.setOnClickListener {
             playerChoice = Choice.Scissor
             userChoiceUi()
-            Log.d(TAG,"You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+            Log.d(TAG,
+                "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
         }
         binding.ivPaperUser.setOnClickListener {
             playerChoice = Choice.Paper
             userChoiceUi()
-            Log.d(TAG,"You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+            Log.d(TAG,
+                "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
         }
         binding.ivReset.setOnClickListener {
             resetAll()
