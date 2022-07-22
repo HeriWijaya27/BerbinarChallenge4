@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startBattle(playerChoice: Choice, enemyChoice: Choice): String {
         binding.tvResult.setTextColor(Color.WHITE)
-        binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28F)
+        binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24F)
         val p1Win = "PEMAIN 1 MENANG"
         val p2Win = "PEMAIN 2 MENANG"
         return when {
