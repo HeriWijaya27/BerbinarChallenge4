@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.binarch4.databinding.ActivityMainBinding
 
@@ -123,8 +122,6 @@ class MainActivity : AppCompatActivity() {
     private fun startBattle(playerChoice: Choice, enemyChoice: Choice): String {
         binding.tvResult.setTextColor(Color.WHITE)
         binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24F)
-        val name = intent.getStringExtra("EXTRA_NAME")
-        binding.tvPlayerName.text = name
         val player1Win = "PEMAIN 1 MENANG"
         val player2Win = "PEMAIN 2 MENANG"
         return when {
