@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.binarch4.databinding.ActivityMainBinding
 
@@ -14,29 +15,26 @@ class MainActivity : AppCompatActivity() {
     private var enemyChoice: Choice? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
         binding.ivRockUser.setOnClickListener {
             playerChoice = Choice.Rock
             userChoiceUi()
-            Log.d(TAG,
-                "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+            infoLog()
         }
         binding.ivScissorUser.setOnClickListener {
             playerChoice = Choice.Scissor
             userChoiceUi()
-            Log.d(TAG,
-                "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+            infoLog()
         }
         binding.ivPaperUser.setOnClickListener {
             playerChoice = Choice.Paper
             userChoiceUi()
-            Log.d(TAG,
-                "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+            infoLog()
         }
         binding.ivReset.setOnClickListener {
             resetAll()
@@ -45,9 +43,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun infoLog(){
+       Log.d(TAG,
+            "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+    }
     private fun resetAll() {
         binding.tvResult.setTextColor(Color.RED)
-        binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 64F)
+        binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 80F)
         binding.tvResult.setBackgroundColor(Color.TRANSPARENT)
         playerChoice = null
         enemyChoice = null
@@ -121,8 +123,10 @@ class MainActivity : AppCompatActivity() {
     private fun startBattle(playerChoice: Choice, enemyChoice: Choice): String {
         binding.tvResult.setTextColor(Color.WHITE)
         binding.tvResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24F)
-        val p1Win = "PEMAIN 1 MENANG"
-        val p2Win = "PEMAIN 2 MENANG"
+        val name = intent.getStringExtra("EXTRA_NAME")
+        binding.tvPlayerName.text = name
+        val player1Win = "PEMAIN 1 MENANG"
+        val player2Win = "PEMAIN 2 MENANG"
         return when {
             enemyChoice == playerChoice -> {
                 binding.tvResult.setBackgroundColor(Color.CYAN)
@@ -132,28 +136,28 @@ class MainActivity : AppCompatActivity() {
             playerChoice == Choice.Rock -> {
                 if (enemyChoice == Choice.Paper) {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
-                    p2Win
+                    player2Win
                 } else {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
-                    p1Win
+                    player1Win
                 }
             }
             playerChoice == Choice.Paper -> {
                 if (enemyChoice == Choice.Scissor) {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
-                    p2Win
+                    player2Win
                 } else {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
-                    p1Win
+                    player1Win
                 }
             }
             playerChoice == Choice.Scissor -> {
                 if (enemyChoice == Choice.Rock) {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
-                    p2Win
+                    player2Win
                 } else {
                     binding.tvResult.setBackgroundColor(Color.GREEN)
-                    p1Win
+                    player1Win
                 }
 
             }
