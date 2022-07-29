@@ -91,24 +91,24 @@ class MainActivity : AppCompatActivity() {
         }
         when (enemyChoice) {
             Choice.Rock -> {
-                binding.ivComBatu.setBackgroundColor(Color.CYAN)
-                binding.ivComKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivComGunting.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivRockCom.setBackgroundColor(Color.CYAN)
+                binding.ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
             }
             Choice.Paper -> {
-                binding.ivComKertas.setBackgroundColor(Color.CYAN)
-                binding.ivComBatu.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivComGunting.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivPaperCom.setBackgroundColor(Color.CYAN)
+                binding.ivRockCom.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
             }
             Choice.Scissor -> {
-                binding.ivComKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivComBatu.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivComGunting.setBackgroundColor(Color.CYAN)
+                binding.ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivRockCom.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorCom.setBackgroundColor(Color.CYAN)
             }
             else -> {
-                binding.ivComKertas.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivComBatu.setBackgroundColor(Color.TRANSPARENT)
-                binding.ivComGunting.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivRockCom.setBackgroundColor(Color.TRANSPARENT)
+                binding.ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
             }
 
         }
