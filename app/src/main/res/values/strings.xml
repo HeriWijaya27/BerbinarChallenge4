@@ -9,4 +9,13 @@
     <string name="main_lagi">Main Lagi</string>
     <string name="hasil_permainan">Hasil Permainan</string>
     <string name="kembali_ke_menu">Kembali Ke Menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bermain_suit_melawan_sesama_pemain">Bermain suit melawan sesama pemain.</string>
+    <string name="bermain_suit_melawan_komputer">Bermain suit melawan komputer.</string>
+    <string name="masukan_namamu_di_bawah">Masukan namamu di bawah</string>
+    <string name="nama">Nama</string>
+    <string name="cpu">CPU</string>
+    <string name="seri">SERI!</string>
+    <string name="ini_custom_toast">Ini Custom Toast</string>
 </resources>

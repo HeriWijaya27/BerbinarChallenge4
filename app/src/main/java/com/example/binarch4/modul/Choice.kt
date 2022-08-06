@@ -1,9 +1,9 @@
-package com.example.binarch4
+package com.example.binarch4.modul
 
 
 
 enum class Choice {
-    Rock,Paper,Scissor;
+    Batu,Kertas,Gunting;
 
     companion object {
         fun random(): Choice {
