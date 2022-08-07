@@ -1,11 +1,15 @@
 package com.example.binarch4.activity
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import com.example.binarch4.R
 import com.example.binarch4.databinding.ActivityVersusPemainBinding
 import com.example.binarch4.dialog.CustomResultDialog
@@ -21,13 +25,14 @@ class VersusPemainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         binding = ActivityVersusPemainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
         val userName = intent.getStringExtra(NAMA)
 
-        binding?.tvPlayerName?.text = userName.toString()
 
+        binding?.tvPlayerName?.text = userName.toString()
         binding?.apply {
             binding?.ivRockUser?.setOnClickListener {
                 playerChoice = Choice.Batu
@@ -62,16 +67,23 @@ class VersusPemainActivity : AppCompatActivity() {
             binding?.ivReset?.setOnClickListener {
                 resetAll()
             }
+            binding?.ivCloseVsCpu?.setOnClickListener {
+                val menu = Intent(this@VersusPemainActivity, MenuActivity::class.java)
+                menu.putExtra(NAMA, userName)
+                startActivity(menu)
+            }
         }
     }
 
     private fun showResultUi() {
+
         if (playerChoice != null && enemyChoice != null) {
             showDialogResult(playerChoice!!, enemyChoice!!)
             userChoiceUi()
             comChoiceUi()
             showToast()
         }
+
     }
 
     private fun infoLog() {

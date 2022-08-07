@@ -5,24 +5,25 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.binarch4.databinding.ActivityMenuBinding
-import com.example.binarch4.modul.User
 import com.google.android.material.snackbar.Snackbar
 
 class MenuActivity : AppCompatActivity() {
 
-companion object{
-    const val NAMA = "USER_INPUT"
-}
-    private var binding : ActivityMenuBinding? = null
+    companion object {
+        const val NAMA = "USER_INPUT"
+    }
+
+    private var binding: ActivityMenuBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-
+        showSnackbar()
         val userName = intent.getStringExtra(NAMA)
         val pemainVsPemain = "$userName VS PEMAIN"
         val pemainVsCpu = "$userName VS CPU"
-        showSnackbar()
+
 
         binding?.apply {
             binding?.tvPemainVsPemain?.text = pemainVsPemain

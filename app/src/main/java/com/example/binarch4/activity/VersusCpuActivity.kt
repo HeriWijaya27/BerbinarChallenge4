@@ -18,7 +18,7 @@ class VersusCpuActivity : AppCompatActivity() {
     private var enemyChoice: Choice? = null
 
     companion object {
-        const val NAMA = "KEY_NAME"
+        const val NAMA = "USER_INPUT"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +26,6 @@ class VersusCpuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
         val userName = intent.getStringExtra(NAMA)
-
-
-
         binding?.tvPlayerName?.text = userName.toString()
 
         binding?.apply {

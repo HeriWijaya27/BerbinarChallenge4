@@ -18,6 +18,7 @@ class CustomResultDialog(val result: String) : DialogFragment() {
     ): View? {
         binding = ActivityCustomResultDialogBinding.inflate(inflater)
 
+
         return binding?.root
     }
 
