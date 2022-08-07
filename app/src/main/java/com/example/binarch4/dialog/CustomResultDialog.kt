@@ -6,20 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.example.binarch4.MenuActivity
+import com.example.binarch4.activity.MenuActivity
 import com.example.binarch4.databinding.ActivityCustomResultDialogBinding
-class CustomResultDialog(val result : String) : DialogFragment(){
-    var binding : ActivityCustomResultDialogBinding? = null
 
+class CustomResultDialog(val result: String) : DialogFragment() {
+    var binding: ActivityCustomResultDialogBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = ActivityCustomResultDialogBinding.inflate(inflater)
 
         return binding?.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,6 +35,12 @@ class CustomResultDialog(val result : String) : DialogFragment(){
         binding?.btnPlayAgain?.setOnClickListener {
             dismiss()
         }
+        binding?.btnMenuHalaman?.setOnClickListener {
+            val intent = Intent(this.requireActivity(), MenuActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 }

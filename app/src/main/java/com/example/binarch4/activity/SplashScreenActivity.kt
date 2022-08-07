@@ -1,4 +1,4 @@
-package com.example.binarch4
+package com.example.binarch4.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.example.binarch4.R
 import com.example.binarch4.databinding.ActivitySplashScreenBinding
 
 @SuppressLint("CustomSplashScreen")

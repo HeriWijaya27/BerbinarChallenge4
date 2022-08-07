@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dialog.CustomResultDialog"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    android:padding="10dp"
+    tools:context=".dialog.CustomResultDialog">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hasil_permainan"
-        android:textSize="32sp"
-        android:textColor="@color/black"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hasil_permainan"
-        android:id="@+id/tvHasil"
-        android:textSize="24sp"
         android:textColor="@color/black"
-        android:layout_margin="50dp"/>
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/tvHasil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        tools:text="MENANG!" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlayAgain"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/main_lagi"
         android:background="@drawable/bg_purple"
+        android:text="@string/main_lagi"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        android:id="@+id/btnPlayAgain"/>
+        android:textSize="18sp" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMenuHalaman"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/kembali_ke_menu"
-        android:textSize="18sp"
-        android:background="@drawable/bg_btn_orange"
         android:layout_margin="10dp"
-        android:id="@+id/btnMenuHalaman"/>
+        android:background="@drawable/bg_btn_orange"
+        android:text="@string/kembali_ke_menu"
+        android:textSize="18sp" />
 
 </LinearLayout>

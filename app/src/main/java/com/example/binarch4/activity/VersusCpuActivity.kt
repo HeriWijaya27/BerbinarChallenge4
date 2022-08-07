@@ -1,19 +1,19 @@
-package com.example.binarch4
+package com.example.binarch4.activity
 
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.binarch4.databinding.ActivityVersusPemainBinding
+import com.example.binarch4.R
+import com.example.binarch4.databinding.ActivityVersusCpuBinding
 import com.example.binarch4.dialog.CustomResultDialog
 import com.example.binarch4.modul.Choice
 
-class VersusPemainActivity : AppCompatActivity() {
-    private var binding: ActivityVersusPemainBinding? = null
+class VersusCpuActivity : AppCompatActivity() {
+    private var binding: ActivityVersusCpuBinding? = null
     private var playerChoice: Choice? = null
     private var enemyChoice: Choice? = null
 
@@ -22,12 +22,11 @@ class VersusPemainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityVersusPemainBinding.inflate(layoutInflater)
+        binding = ActivityVersusCpuBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
         val userName = intent.getStringExtra(NAMA)
-        val dialogDismiss = findViewById<Button>(R.id.btnPlayAgain)
-        val dialogBackToMenu = findViewById<Button>(R.id.btnMenuHalaman)
+
 
 
         binding?.tvPlayerName?.text = userName.toString()
@@ -35,55 +34,31 @@ class VersusPemainActivity : AppCompatActivity() {
         binding?.apply {
             binding?.ivRockUser?.setOnClickListener {
                 playerChoice = Choice.Batu
-                showResultUi()
+                userChoiceUi()
                 infoLog()
+                showToast()
             }
             binding?.ivScissorUser?.setOnClickListener {
                 playerChoice = Choice.Gunting
-                showResultUi()
+                userChoiceUi()
                 infoLog()
+                showToast()
             }
             binding?.ivPaperUser?.setOnClickListener {
                 playerChoice = Choice.Kertas
-                showResultUi()
+                userChoiceUi()
                 infoLog()
-            }
-            binding?.ivPaperCom?.setOnClickListener {
-                enemyChoice = Choice.Kertas
-                showResultUi()
-                infoLog()
-            }
-            binding?.ivScissorCom?.setOnClickListener {
-                enemyChoice = Choice.Gunting
-                showResultUi()
-                infoLog()
-            }
-            binding?.ivRockCom?.setOnClickListener {
-                enemyChoice = Choice.Batu
-                showResultUi()
-                infoLog()
+                showToast()
             }
             binding?.ivReset?.setOnClickListener {
                 resetAll()
             }
-        }
-//        dialogDismiss.setOnClickListener {
-//            resetAll()
-//        }
-//        dialogBackToMenu.setOnClickListener {
-//            val menu = Intent(this@VersusPemainActivity, MenuActivity::class.java)
-//            menu.putExtra(NAMA, userName)
-//            startActivity(menu)
-//        }
-
-    }
-
-    private fun showResultUi() {
-        if (playerChoice != null && enemyChoice != null) {
-            showDialogResult(playerChoice!!, enemyChoice!!)
-            userChoiceUi()
-            comChoiceUi()
-            showToast()
+            binding?.ivCloseVsCpu?.setOnClickListener {
+                val intent = Intent(this@VersusCpuActivity, MenuActivity::class.java)
+                intent.putExtra(NAMA, userName)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
@@ -96,7 +71,6 @@ class VersusPemainActivity : AppCompatActivity() {
         playerChoice = null
         enemyChoice = null
         userChoiceUi()
-        comChoiceUi()
     }
 
 
@@ -123,10 +97,14 @@ class VersusPemainActivity : AppCompatActivity() {
                 binding?.ivScissorUser?.setBackgroundColor(Color.TRANSPARENT)
             }
         }
+        comChoiceUi()
 
     }
 
     private fun comChoiceUi() {
+        if (playerChoice != null) {
+            enemyChoice = Choice.random()
+        }
         when (enemyChoice) {
             Choice.Batu -> {
                 binding?.ivRockCom?.setBackgroundResource(R.drawable.bg_item_selected)
@@ -150,47 +128,61 @@ class VersusPemainActivity : AppCompatActivity() {
             }
 
         }
-
+        if (playerChoice != null && enemyChoice != null) {
+            showDialogResult(playerChoice!!, enemyChoice!!)
+        }
     }
 
 
-    private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice): Any {
+    private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice): String {
+
         val playerName = intent.getStringExtra(NAMA)
-        val pemainMenang = CustomResultDialog("$playerName Menang!")
+        val pemainMenang = CustomResultDialog(" $playerName MENANG!")
         val cpuMenang = CustomResultDialog("CPU MENANG!")
         val draw = CustomResultDialog("SERI!")
+
+
 
         return when {
 
             enemyChoice == playerChoice -> {
                 draw.show(supportFragmentManager, "CustomResultDialog").toString()
             }
+
             playerChoice == Choice.Batu -> {
                 if (enemyChoice == Choice.Kertas) {
                     cpuMenang.show(supportFragmentManager, "CustomResultDialog").toString()
+
                 } else {
                     pemainMenang.show(supportFragmentManager, "CustomResultDialog").toString()
+
+
                 }
             }
             playerChoice == Choice.Kertas -> {
                 if (enemyChoice == Choice.Gunting) {
                     cpuMenang.show(supportFragmentManager, "CustomResultDialog").toString()
+
                 } else {
                     pemainMenang.show(supportFragmentManager, "CustomResultDialog").toString()
+
                 }
             }
             playerChoice == Choice.Gunting -> {
                 if (enemyChoice == Choice.Batu) {
                     cpuMenang.show(supportFragmentManager, "CustomResultDialog").toString()
+
                 } else {
                     pemainMenang.show(supportFragmentManager, "CustomResultDialog").toString()
+
                 }
             }
             else -> ""
         }
+
     }
 
-    private fun showToast() {
+    fun showToast() {
         val toast =
             Toast.makeText(this, "CPU Memilih ${enemyChoice.toString()}", Toast.LENGTH_SHORT)
         toast.show()
