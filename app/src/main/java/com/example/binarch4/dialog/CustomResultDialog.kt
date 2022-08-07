@@ -10,6 +10,7 @@ import com.example.binarch4.activity.MenuActivity
 import com.example.binarch4.databinding.ActivityCustomResultDialogBinding
 
 class CustomResultDialog(val result: String) : DialogFragment() {
+
     var binding: ActivityCustomResultDialogBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,7 +18,6 @@ class CustomResultDialog(val result: String) : DialogFragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = ActivityCustomResultDialogBinding.inflate(inflater)
-
 
         return binding?.root
     }
@@ -38,6 +38,7 @@ class CustomResultDialog(val result: String) : DialogFragment() {
         }
         binding?.btnMenuHalaman?.setOnClickListener {
             val intent = Intent(this.requireActivity(), MenuActivity::class.java)
+            intent.putExtra("USER_INPUT", "")
             startActivity(intent)
         }
 

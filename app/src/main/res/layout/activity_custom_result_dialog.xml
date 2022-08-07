@@ -17,14 +17,16 @@
 
     <TextView
         android:id="@+id/tvHasil"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:fontFamily="monospace"
         android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
-        tools:text="MENANG!" />
+        tools:text="MENANG!"
+        android:textAlignment="center"
+        android:layout_gravity="center"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnPlayAgain"
