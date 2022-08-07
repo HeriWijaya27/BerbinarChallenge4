@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment
 import com.example.binarch4.MenuActivity
 import com.example.binarch4.databinding.ActivityCustomResultDialogBinding
 class CustomResultDialog(val result : String) : DialogFragment(){
-
     var binding : ActivityCustomResultDialogBinding? = null
 
     override fun onCreateView(
@@ -34,11 +33,6 @@ class CustomResultDialog(val result : String) : DialogFragment(){
 
         binding?.btnPlayAgain?.setOnClickListener {
             dismiss()
-        }
-
-        binding?.btnMenuHalaman?.setOnClickListener {
-            val menu = Intent(this@CustomResultDialog.requireContext(), MenuActivity::class.java)
-            startActivity(menu)
         }
     }
 

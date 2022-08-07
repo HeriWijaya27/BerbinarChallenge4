@@ -3,8 +3,6 @@ package com.example.binarch4
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.binarch4.databinding.ActivityMenuBinding
 import com.google.android.material.snackbar.Snackbar
@@ -41,7 +39,6 @@ class MenuActivity : AppCompatActivity() {
                 finish()
             }
         }
-
     }
 
     private fun showSnackbar() {
