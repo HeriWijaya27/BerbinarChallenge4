@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".dialog.CustomResultDialog">
+    tools:context=".dialog.CustomResultDialog"
+    android:background="@drawable/bg_dialog">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
         android:layout_margin="30dp"
         android:fontFamily="monospace"
         android:textColor="@color/black"
-        android:textSize="35sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         tools:text="MENANG!"
         android:textAlignment="center"

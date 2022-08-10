@@ -20,16 +20,14 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val image = findViewById<ImageView>(R.id.ivSplashImage)
         Glide.with(this)
             .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
-            .into(image)
+            .into(binding!!.ivSplashImage)
 
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, LandingPageActivity::class.java))
             finish()
         }, 3000)
-
 
     }
 }

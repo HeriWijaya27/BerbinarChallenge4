@@ -1,22 +1,19 @@
 package com.example.binarch4.activity
 
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
 import com.example.binarch4.R
-import com.example.binarch4.databinding.ActivityVersusPemainBinding
+import com.example.binarch4.databinding.ActivityGameplayBinding
 import com.example.binarch4.dialog.CustomResultDialog
 import com.example.binarch4.modul.Choice
 
 class VersusPemainActivity : AppCompatActivity() {
-    private var binding: ActivityVersusPemainBinding? = null
+    private var binding: ActivityGameplayBinding? = null
     private var playerChoice: Choice? = null
     private var enemyChoice: Choice? = null
 
@@ -26,51 +23,51 @@ class VersusPemainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        binding = ActivityVersusPemainBinding.inflate(layoutInflater)
+        binding = ActivityGameplayBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
         val userName = intent.getStringExtra(NAMA)
+        Glide.with(this)
+            .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
+            .into(binding!!.ivBanner)
 
-
-        binding?.tvPlayerName?.text = userName.toString()
         binding?.apply {
-            binding?.ivRockUser?.setOnClickListener {
+            tvPlayerName.text = userName.toString()
+            ivRockUser.setOnClickListener {
                 playerChoice = Choice.Batu
                 showResultUi()
                 infoLog()
             }
-            binding?.ivScissorUser?.setOnClickListener {
+            ivScissorUser.setOnClickListener {
                 playerChoice = Choice.Gunting
                 showResultUi()
                 infoLog()
             }
-            binding?.ivPaperUser?.setOnClickListener {
+            ivPaperUser.setOnClickListener {
                 playerChoice = Choice.Kertas
                 showResultUi()
                 infoLog()
             }
-            binding?.ivPaperCom?.setOnClickListener {
+            ivPaperCom.setOnClickListener {
                 enemyChoice = Choice.Kertas
                 showResultUi()
                 infoLog()
             }
-            binding?.ivScissorCom?.setOnClickListener {
+            ivScissorCom.setOnClickListener {
                 enemyChoice = Choice.Gunting
                 showResultUi()
                 infoLog()
             }
-            binding?.ivRockCom?.setOnClickListener {
+            ivRockCom.setOnClickListener {
                 enemyChoice = Choice.Batu
                 showResultUi()
                 infoLog()
             }
-            binding?.ivReset?.setOnClickListener {
+            ivReset.setOnClickListener {
                 resetAll()
             }
-            binding?.ivCloseVsCpu?.setOnClickListener {
-                val menu = Intent(this@VersusPemainActivity, MenuActivity::class.java)
-                menu.putExtra(NAMA, userName)
-                startActivity(menu)
+            ivCloseVsCpu.setOnClickListener {
+                finish()
             }
         }
     }
@@ -86,9 +83,17 @@ class VersusPemainActivity : AppCompatActivity() {
 
     }
 
+    fun showToast() {
+        val toast =
+            Toast.makeText(this, "CPU Memilih ${enemyChoice.toString()}", Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
     private fun infoLog() {
-        Log.d(TAG,
-            "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}")
+        Log.d(
+            TAG,
+            "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}"
+        )
     }
 
     private fun resetAll() {
@@ -98,54 +103,68 @@ class VersusPemainActivity : AppCompatActivity() {
         comChoiceUi()
     }
 
-
     private fun userChoiceUi() {
         when (playerChoice) {
             Choice.Batu -> {
-                binding?.ivRockUser?.setBackgroundResource(R.drawable.bg_item_selected)
-                binding?.ivPaperUser?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorUser?.setBackgroundColor(Color.TRANSPARENT)
+                binding?.apply {
+                    ivRockUser.setBackgroundResource(R.drawable.bg_item_selected)
+                    ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
+                }
             }
             Choice.Kertas -> {
-                binding?.ivPaperUser?.setBackgroundResource(R.drawable.bg_item_selected)
-                binding?.ivRockUser?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorUser?.setBackgroundColor(Color.TRANSPARENT)
+                binding?.apply {
+                    ivPaperUser.setBackgroundResource(R.drawable.bg_item_selected)
+                    ivRockUser.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
+                }
             }
             Choice.Gunting -> {
-                binding?.ivPaperUser?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivRockUser?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorUser?.setBackgroundResource(R.drawable.bg_item_selected)
+                binding?.apply {
+                    ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
+                    ivRockUser.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorUser.setBackgroundResource(R.drawable.bg_item_selected)
+                }
             }
             else -> {
-                binding?.ivPaperUser?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivRockUser?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorUser?.setBackgroundColor(Color.TRANSPARENT)
+                binding?.apply {
+                    ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
+                    ivRockUser.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
+                }
             }
         }
-
     }
 
     private fun comChoiceUi() {
         when (enemyChoice) {
             Choice.Batu -> {
-                binding?.ivRockCom?.setBackgroundResource(R.drawable.bg_item_selected)
-                binding?.ivPaperCom?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorCom?.setBackgroundColor(Color.TRANSPARENT)
+                binding?.apply {
+                    ivRockCom.setBackgroundResource(R.drawable.bg_item_selected)
+                    ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
+                }
             }
             Choice.Kertas -> {
-                binding?.ivPaperCom?.setBackgroundResource(R.drawable.bg_item_selected)
-                binding?.ivRockCom?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorCom?.setBackgroundColor(Color.TRANSPARENT)
+                binding?.apply {
+                    ivPaperCom.setBackgroundResource(R.drawable.bg_item_selected)
+                    ivRockCom.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
+                }
             }
             Choice.Gunting -> {
-                binding?.ivPaperCom?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivRockCom?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorCom?.setBackgroundResource(R.drawable.bg_item_selected)
+                binding?.apply {
+                    ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
+                    ivRockCom.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorCom.setBackgroundResource(R.drawable.bg_item_selected)
+                }
             }
             else -> {
-                binding?.ivPaperCom?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivRockCom?.setBackgroundColor(Color.TRANSPARENT)
-                binding?.ivScissorCom?.setBackgroundColor(Color.TRANSPARENT)
+                binding?.apply {
+                    ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
+                    ivRockCom.setBackgroundColor(Color.TRANSPARENT)
+                    ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
+                }
             }
 
         }
@@ -153,45 +172,39 @@ class VersusPemainActivity : AppCompatActivity() {
     }
 
 
-    private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice): String {
-        val playerName = intent.getStringExtra(NAMA)
-        val pemainMenang = CustomResultDialog("$playerName MENANG!")
-        val cpuMenang = CustomResultDialog("CPU MENANG!")
-        val draw = CustomResultDialog("SERI!")
+    private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice) {
+        val namaPemain = intent.getStringExtra(NAMA)
+        val pemainMenang = CustomResultDialog(result = "$namaPemain MENANG!", onReset = { resetAll() })
+        val cpuMenang = CustomResultDialog(result = "CPU MENANG!", onReset = { resetAll() })
+        val draw = CustomResultDialog(result = "SERI!", onReset = { resetAll() })
 
-        return when {
-
-            enemyChoice == playerChoice -> {
-                draw.show(supportFragmentManager, "CustomResultDialog").toString()
-            }
-            playerChoice == Choice.Batu -> {
+        if (enemyChoice == playerChoice) {
+            draw.show(supportFragmentManager, "RESULT DIALOG")
+            return
+        }
+        when (playerChoice) {
+            Choice.Batu -> {
                 if (enemyChoice == Choice.Kertas) {
-                    cpuMenang.show(supportFragmentManager, "CustomResultDialog").toString()
-                } else {
-                    pemainMenang.show(supportFragmentManager, "CustomResultDialog").toString()
-                }
-            }
-            playerChoice == Choice.Kertas -> {
-                if (enemyChoice == Choice.Gunting) {
-                    cpuMenang.show(supportFragmentManager, "CustomResultDialog").toString()
-                } else {
-                    pemainMenang.show(supportFragmentManager, "CustomResultDialog").toString()
-                }
-            }
-            playerChoice == Choice.Gunting -> {
-                if (enemyChoice == Choice.Batu) {
-                    cpuMenang.show(supportFragmentManager, "CustomResultDialog").toString()
-                } else {
-                    pemainMenang.show(supportFragmentManager, "CustomResultDialog").toString()
-                }
-            }
-            else -> ""
-        }
-    }
+                    cpuMenang.show(supportFragmentManager, "RESULT DIALOG")
 
-    fun showToast() {
-        val toast =
-            Toast.makeText(this, "CPU Memilih ${enemyChoice.toString()}", Toast.LENGTH_SHORT)
-        toast.show()
+                } else {
+                    pemainMenang.show(supportFragmentManager, "RESULT DIALOG")
+                }
+            }
+            Choice.Kertas -> {
+                if (enemyChoice == Choice.Gunting) {
+                    cpuMenang.show(supportFragmentManager, "RESULT DIALOG")
+                } else {
+                    pemainMenang.show(supportFragmentManager, "RESULT DIALOG")
+                }
+            }
+            Choice.Gunting -> {
+                if (enemyChoice == Choice.Batu) {
+                    cpuMenang.show(supportFragmentManager, "RESULT DIALOG")
+                } else {
+                    pemainMenang.show(supportFragmentManager, "RESULT DIALOG")
+                }
+            }
+        }
     }
 }

@@ -8,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.binarch4.R
 import com.example.binarch4.adapter.ViewPagerAdapter
 import com.example.binarch4.databinding.ActivityLandingPageViewBinding
-import me.relex.circleindicator.CircleIndicator3
 
 class LandingPageActivity : AppCompatActivity() {
     private var binding: ActivityLandingPageViewBinding? = null
@@ -18,20 +17,46 @@ class LandingPageActivity : AppCompatActivity() {
         binding = ActivityLandingPageViewBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val halaman = findViewById<ViewPager2>(R.id.vpLandingPage)
         val viewPagerAdapter = ViewPagerAdapter(this)
-        halaman.adapter = viewPagerAdapter
-        val indicator = findViewById<CircleIndicator3>(R.id.ciIndikator)
-        indicator.setViewPager(halaman)
+        binding?.vpLandingPage?.adapter = viewPagerAdapter
+        binding?.ciIndikator?.setViewPager(binding?.vpLandingPage)
 
 
-        binding?.ivNext?.setOnClickListener {
-            val nameInput = findViewById<EditText>(R.id.etUserName).text.toString()
-            val enterGame = Intent(this, MenuActivity::class.java)
-            enterGame.putExtra("USER_INPUT", nameInput)
-            startActivity(enterGame)
+        binding?.vpLandingPage?.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            val textPlay = "PLAY"
+            val textNext = "NEXT"
+            override fun onPageSelected(position: Int) {
+                if(position == 2) {
+                    binding?.tvNext?.text = textPlay
+                    binding?.tvNext?.setOnClickListener {
+                        toMenu()
+                    }
+
+                }else{
+                    binding?.tvNext?.text = textNext
+                    binding?.tvNext?.setOnClickListener {
+                        binding?.vpLandingPage?.apply{
+                            beginFakeDrag()
+                            fakeDragBy(-3f)
+                            endFakeDrag()
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private fun toMenu(){
+        val inputName = findViewById<EditText>(R.id.etUserName)
+        val name = inputName.text.toString()
+        val keMenu = Intent(this, MenuActivity::class.java)
+        if (name.isNotEmpty()) {
+            keMenu.putExtra("USER_INPUT", name)
+            startActivity(keMenu)
+        } else {
+            inputName.error = "NAMA TIDAK BOLEH KOSONG"
+            inputName.requestFocus()
         }
-
-
     }
 }

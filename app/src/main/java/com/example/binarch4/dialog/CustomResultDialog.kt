@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.binarch4.activity.MenuActivity
 import com.example.binarch4.databinding.ActivityCustomResultDialogBinding
 
-class CustomResultDialog(val result: String) : DialogFragment() {
+class CustomResultDialog(val result: String, val onReset: ()->Unit) : DialogFragment() {
 
     var binding: ActivityCustomResultDialogBinding? = null
     override fun onCreateView(
@@ -34,15 +34,13 @@ class CustomResultDialog(val result: String) : DialogFragment() {
         binding?.tvHasil?.text = result
 
         binding?.btnPlayAgain?.setOnClickListener {
+            onReset()
             dismiss()
+
         }
         binding?.btnMenuHalaman?.setOnClickListener {
-            val intent = Intent(this.requireActivity(), MenuActivity::class.java)
-            intent.putExtra("USER_INPUT", "")
-            startActivity(intent)
+            this.requireActivity().finish()
         }
-
-
     }
 
 }

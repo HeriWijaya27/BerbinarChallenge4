@@ -24,7 +24,6 @@ class MenuActivity : AppCompatActivity() {
         val pemainVsPemain = "$userName VS PEMAIN"
         val pemainVsCpu = "$userName VS CPU"
 
-
         binding?.apply {
             binding?.tvPemainVsPemain?.text = pemainVsPemain
             binding?.tvPemainVsCpu?.text = pemainVsCpu

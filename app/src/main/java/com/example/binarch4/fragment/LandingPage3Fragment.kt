@@ -13,11 +13,6 @@ import com.example.binarch4.databinding.FragmentLandingPage3Binding
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LandingPage3Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LandingPage3Fragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -37,14 +32,6 @@ class LandingPage3Fragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
        val binding = FragmentLandingPage3Binding.inflate(layoutInflater)
-
-//        binding.ivSubmitName.setOnClickListener {
-//            val enter = Intent(this@LandingPage3Fragment.requireContext(), MenuActivity::class.java)
-//            val name = binding.etUserName.text.toString()
-//            enter.putExtra("KEY_NAME", name)
-//            startActivity(enter)
-//        }
-
         return binding.root
     }
 

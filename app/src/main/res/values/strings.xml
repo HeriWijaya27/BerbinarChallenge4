@@ -18,4 +18,5 @@
     <string name="cpu">CPU</string>
     <string name="seri">SERI!</string>
     <string name="ini_custom_toast">Ini Custom Toast</string>
+    <string name="next">NEXT</string>
 </resources>
