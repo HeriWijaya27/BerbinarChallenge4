@@ -23,8 +23,8 @@
         android:id="@+id/vpLandingPage"
         android:layout_above="@id/ciIndikator"/>
 
-    <TextView
-        android:id="@+id/tvNext"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -33,11 +33,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:textSize="20sp"
         android:background="@drawable/bg_purple"
         android:padding="10dp"
         android:src="@drawable/ic_arrow"
         android:text="@string/next"
+        android:textSize="20sp"
         app:tint="@color/ligth_blue" />
 
 

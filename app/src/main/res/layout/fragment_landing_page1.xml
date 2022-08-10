@@ -14,12 +14,12 @@
         android:src="@drawable/ic_landing_page1" />
 
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/bermain_suit_melawan_sesama_pemain"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
 
 </LinearLayout>

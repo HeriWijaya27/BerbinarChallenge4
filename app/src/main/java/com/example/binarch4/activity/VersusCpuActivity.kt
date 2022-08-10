@@ -59,6 +59,7 @@ class VersusCpuActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun showToast() {
         val toast =
             Toast.makeText(this, "CPU Memilih ${enemyChoice.toString()}", Toast.LENGTH_SHORT)
@@ -152,12 +153,11 @@ class VersusCpuActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice) {
         val playerName = intent.getStringExtra(NAMA)
-        val pemainMenang = CustomResultDialog(result = "$playerName MENANG!", onReset = {resetAll()})
-        val cpuMenang = CustomResultDialog(result = "CPU MENANG!", onReset = {resetAll()} )
-        val draw = CustomResultDialog(result = "SERI!", onReset = {resetAll()})
+        val pemainMenang = CustomResultDialog(result = "$playerName MENANG!", onReset = { resetAll() })
+        val cpuMenang = CustomResultDialog(result = "CPU MENANG!", onReset = { resetAll() })
+        val draw = CustomResultDialog(result = "SERI!", onReset = { resetAll() })
 
 
         if (enemyChoice == playerChoice) {

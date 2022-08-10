@@ -19,7 +19,9 @@ class MenuActivity : AppCompatActivity() {
 
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+
         showSnackbar()
+
         val userName = intent.getStringExtra(NAMA)
         val pemainVsPemain = "$userName VS PEMAIN"
         val pemainVsCpu = "$userName VS CPU"
@@ -44,14 +46,18 @@ class MenuActivity : AppCompatActivity() {
 
     private fun showSnackbar() {
         val welcomeText = intent.getStringExtra(NAMA)
-        val snackbar = binding?.let {
-            Snackbar.make(it.llMenuActivity,
+        binding?.llMenuActivity?.let {
+            Snackbar.make(
+                it,
                 "Selamat Datang $welcomeText",
-                Snackbar.LENGTH_LONG)
+                Snackbar.LENGTH_LONG
+            ).apply {
+                view.setBackgroundColor(Color.BLACK)
+                setTextColor(Color.WHITE)
+                setAction("TUTUP") { dismiss() }
+                show()
+            }
         }
-        snackbar?.view?.setBackgroundColor(Color.BLACK)
-        snackbar?.setTextColor(Color.WHITE)
-        snackbar?.setAction("TUTUP") { snackbar.dismiss() }
-        snackbar?.show()
+
     }
 }
