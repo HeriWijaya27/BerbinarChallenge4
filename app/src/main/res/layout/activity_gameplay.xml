@@ -29,48 +29,49 @@
 
     <TextView
         android:id="@+id/tvPlayerName"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:fontFamily="monospace"
         android:text="@string/player"
         android:textColor="@color/ligth_blue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivBanner" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBanner" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="monospace"
         android:text="@string/cpu"
         android:textColor="@color/ligth_blue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivBanner" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBanner" />
 
     <ImageView
         android:id="@+id/ivRockUser"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
         android:src="@drawable/ic_batu"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivBanner" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName" />
 
     <ImageView
         android:id="@+id/ivRockCom"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="20dp"
         android:src="@drawable/ic_batu"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivBanner" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName" />
 
     <ImageView
         android:id="@+id/ivPaperUser"
