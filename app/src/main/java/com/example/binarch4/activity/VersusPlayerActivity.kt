@@ -12,13 +12,13 @@ import com.example.binarch4.databinding.ActivityGameplayBinding
 import com.example.binarch4.dialog.CustomResultDialog
 import com.example.binarch4.modul.Choice
 
-class VersusPemainActivity : AppCompatActivity() {
+class VersusPlayerActivity : AppCompatActivity() {
     private var binding: ActivityGameplayBinding? = null
-    private var playerChoice: Choice? = null
-    private var enemyChoice: Choice? = null
+    private var player1Choice: Choice? = null
+    private var player2Choice: Choice? = null
 
     companion object {
-        const val NAMA = "USER_INPUT"
+        const val NAME = "USER_INPUT"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class VersusPemainActivity : AppCompatActivity() {
         binding = ActivityGameplayBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
-        val userName = intent.getStringExtra(NAMA)
+        val userName = intent.getStringExtra(NAME)
         Glide.with(this)
             .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
             .into(binding!!.ivBanner)
@@ -34,37 +34,43 @@ class VersusPemainActivity : AppCompatActivity() {
         binding?.apply {
             tvPlayerName.text = userName.toString()
             ivRockUser.setOnClickListener {
-                playerChoice = Choice.Batu
+                player1Choice = Choice.ROCK
                 showResultUi()
                 infoLog()
             }
             ivScissorUser.setOnClickListener {
-                playerChoice = Choice.Gunting
+                player1Choice = Choice.SCISSOR
                 showResultUi()
                 infoLog()
             }
             ivPaperUser.setOnClickListener {
-                playerChoice = Choice.Kertas
+                player1Choice = Choice.PAPER
                 showResultUi()
                 infoLog()
             }
             ivPaperCom.setOnClickListener {
-                enemyChoice = Choice.Kertas
+                player2Choice = Choice.PAPER
                 showResultUi()
                 infoLog()
             }
             ivScissorCom.setOnClickListener {
-                enemyChoice = Choice.Gunting
+                player2Choice = Choice.SCISSOR
                 showResultUi()
                 infoLog()
             }
             ivRockCom.setOnClickListener {
-                enemyChoice = Choice.Batu
+                player2Choice = Choice.ROCK
                 showResultUi()
                 infoLog()
             }
             ivReset.setOnClickListener {
-                resetAll()
+                if (player1Choice != null){
+                    val toast = Toast.makeText(this@VersusPlayerActivity,
+                        "$userName's Choice Has Been Reset.Please Choose Again !",
+                        Toast.LENGTH_SHORT)
+                    toast.show()
+                    resetAll()
+                }
             }
             ivCloseVsCpu.setOnClickListener {
                 finish()
@@ -74,52 +80,52 @@ class VersusPemainActivity : AppCompatActivity() {
 
     private fun showResultUi() {
 
-        if (playerChoice != null && enemyChoice != null) {
-            showDialogResult(playerChoice!!, enemyChoice!!)
+        if (player1Choice != null && player2Choice != null) {
+            showDialogResult(player1Choice!!, player2Choice!!)
             userChoiceUi()
             comChoiceUi()
-            showToast()
+            showToastPlayer2()
         }
 
     }
 
-    fun showToast() {
+    private fun showToastPlayer2() {
         val toast =
-            Toast.makeText(this, "CPU Memilih ${enemyChoice.toString()}", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "PLAYER 2 CHOOSE ${player2Choice.toString()}", Toast.LENGTH_SHORT)
         toast.show()
     }
 
     private fun infoLog() {
         Log.d(
             TAG,
-            "You Pick ${playerChoice.toString()} And Enemy Pick ${enemyChoice.toString()}"
+            "You Pick ${player1Choice.toString()} And Enemy Pick ${player2Choice.toString()}"
         )
     }
 
     private fun resetAll() {
-        playerChoice = null
-        enemyChoice = null
+        player1Choice = null
+        player2Choice = null
         userChoiceUi()
         comChoiceUi()
     }
 
     private fun userChoiceUi() {
-        when (playerChoice) {
-            Choice.Batu -> {
+        when (player1Choice) {
+            Choice.ROCK -> {
                 binding?.apply {
                     ivRockUser.setBackgroundResource(R.drawable.bg_item_selected)
                     ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
                     ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
-            Choice.Kertas -> {
+            Choice.PAPER -> {
                 binding?.apply {
                     ivPaperUser.setBackgroundResource(R.drawable.bg_item_selected)
                     ivRockUser.setBackgroundColor(Color.TRANSPARENT)
                     ivScissorUser.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
-            Choice.Gunting -> {
+            Choice.SCISSOR -> {
                 binding?.apply {
                     ivPaperUser.setBackgroundColor(Color.TRANSPARENT)
                     ivRockUser.setBackgroundColor(Color.TRANSPARENT)
@@ -137,22 +143,22 @@ class VersusPemainActivity : AppCompatActivity() {
     }
 
     private fun comChoiceUi() {
-        when (enemyChoice) {
-            Choice.Batu -> {
+        when (player2Choice) {
+            Choice.ROCK -> {
                 binding?.apply {
                     ivRockCom.setBackgroundResource(R.drawable.bg_item_selected)
                     ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
                     ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
-            Choice.Kertas -> {
+            Choice.PAPER -> {
                 binding?.apply {
                     ivPaperCom.setBackgroundResource(R.drawable.bg_item_selected)
                     ivRockCom.setBackgroundColor(Color.TRANSPARENT)
                     ivScissorCom.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
-            Choice.Gunting -> {
+            Choice.SCISSOR -> {
                 binding?.apply {
                     ivPaperCom.setBackgroundColor(Color.TRANSPARENT)
                     ivRockCom.setBackgroundColor(Color.TRANSPARENT)
@@ -173,36 +179,37 @@ class VersusPemainActivity : AppCompatActivity() {
 
 
     private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice) {
-        val namaPemain = intent.getStringExtra(NAMA)
-        val pemainMenang = CustomResultDialog(result = "$namaPemain MENANG!", onReset = { resetAll() })
-        val cpuMenang = CustomResultDialog(result = "CPU MENANG!", onReset = { resetAll() })
-        val draw = CustomResultDialog(result = "SERI!", onReset = { resetAll() })
+        val playerName = intent.getStringExtra(NAME)
+        val player1Winning =
+            CustomResultDialog(result = "$playerName WIN !", onReset = { resetAll() })
+        val player2Winning = CustomResultDialog(result = "PLAYER 2 WIN !", onReset = { resetAll() })
+        val draw = CustomResultDialog(result = "DRAW !", onReset = { resetAll() })
 
         if (enemyChoice == playerChoice) {
             draw.show(supportFragmentManager, "RESULT DIALOG")
             return
         }
         when (playerChoice) {
-            Choice.Batu -> {
-                if (enemyChoice == Choice.Kertas) {
-                    cpuMenang.show(supportFragmentManager, "RESULT DIALOG")
+            Choice.ROCK -> {
+                if (enemyChoice == Choice.PAPER) {
+                    player2Winning.show(supportFragmentManager, "RESULT DIALOG")
 
                 } else {
-                    pemainMenang.show(supportFragmentManager, "RESULT DIALOG")
+                    player1Winning.show(supportFragmentManager, "RESULT DIALOG")
                 }
             }
-            Choice.Kertas -> {
-                if (enemyChoice == Choice.Gunting) {
-                    cpuMenang.show(supportFragmentManager, "RESULT DIALOG")
+            Choice.PAPER -> {
+                if (enemyChoice == Choice.SCISSOR) {
+                    player2Winning.show(supportFragmentManager, "RESULT DIALOG")
                 } else {
-                    pemainMenang.show(supportFragmentManager, "RESULT DIALOG")
+                    player1Winning.show(supportFragmentManager, "RESULT DIALOG")
                 }
             }
-            Choice.Gunting -> {
-                if (enemyChoice == Choice.Batu) {
-                    cpuMenang.show(supportFragmentManager, "RESULT DIALOG")
+            Choice.SCISSOR -> {
+                if (enemyChoice == Choice.ROCK) {
+                    player2Winning.show(supportFragmentManager, "RESULT DIALOG")
                 } else {
-                    pemainMenang.show(supportFragmentManager, "RESULT DIALOG")
+                    player1Winning.show(supportFragmentManager, "RESULT DIALOG")
                 }
             }
         }

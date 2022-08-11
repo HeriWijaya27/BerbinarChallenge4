@@ -19,4 +19,8 @@
     <string name="seri">SERI!</string>
     <string name="ini_custom_toast">Ini Custom Toast</string>
     <string name="next">NEXT</string>
+    <string name="play_suit_game_against_friends">Play Suit Game Against Friends</string>
+    <string name="play_suit_game_againts_computer">Play Suit Game Againts Computer</string>
+    <string name="input_your_name">Input Your Name</string>
+    <string name="choose_your_enemy">CHOOSE YOUR ENEMY</string>
 </resources>

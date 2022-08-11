@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:visibility="visible"
         app:ci_drawable="@drawable/circle_indicator"
         app:ci_height="10dp"
-        app:ci_width="12dp"
-        android:layout_marginBottom="20dp"/>
+        app:ci_width="10dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
@@ -24,20 +24,16 @@
         android:layout_above="@id/ciIndikator"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNext"
+        android:id="@+id/btnNextPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="10dp"
         android:background="@drawable/bg_purple"
-        android:padding="10dp"
-        android:src="@drawable/ic_arrow"
+        android:textColor="@color/white"
         android:text="@string/next"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:tint="@color/ligth_blue" />
 
 

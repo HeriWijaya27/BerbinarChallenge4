@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 class MenuActivity : AppCompatActivity() {
 
     companion object {
-        const val NAMA = "USER_INPUT"
+        const val NAME = "USER_INPUT"
     }
 
     private var binding: ActivityMenuBinding? = null
@@ -22,22 +22,22 @@ class MenuActivity : AppCompatActivity() {
 
         showSnackbar()
 
-        val userName = intent.getStringExtra(NAMA)
-        val pemainVsPemain = "$userName VS PEMAIN"
-        val pemainVsCpu = "$userName VS CPU"
+        val userName = intent.getStringExtra(NAME)
+        val playerVsPlayer = "$userName VS PLAYER"
+        val playerVsComputer = "$userName VS COMPUTER"
 
         binding?.apply {
-            binding?.tvPemainVsPemain?.text = pemainVsPemain
-            binding?.tvPemainVsCpu?.text = pemainVsCpu
+            tvPemainVsPemain.text = playerVsPlayer
+            tvPemainVsCpu.text = playerVsComputer
             ivLawanPemain.setOnClickListener {
-                val versusPemain = Intent(this@MenuActivity, VersusPemainActivity::class.java)
-                versusPemain.putExtra(NAMA, userName)
-                startActivity(versusPemain)
+                val versusPlayer = Intent(this@MenuActivity, VersusPlayerActivity::class.java)
+                versusPlayer.putExtra(NAME, userName)
+                startActivity(versusPlayer)
             }
 
             ivLawanCpu.setOnClickListener {
                 val versusCpu = Intent(this@MenuActivity, VersusCpuActivity::class.java)
-                versusCpu.putExtra(NAMA, userName)
+                versusCpu.putExtra(NAME, userName)
                 startActivity(versusCpu)
 
             }
@@ -45,16 +45,16 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun showSnackbar() {
-        val welcomeText = intent.getStringExtra(NAMA)
+        val welcomeText = intent.getStringExtra(NAME)
         binding?.llMenuActivity?.let {
             Snackbar.make(
                 it,
-                "Selamat Datang $welcomeText",
+                "Welcome $welcomeText",
                 Snackbar.LENGTH_LONG
             ).apply {
                 view.setBackgroundColor(Color.BLACK)
                 setTextColor(Color.WHITE)
-                setAction("TUTUP") { dismiss() }
+                setAction("DISMISS") { dismiss() }
                 show()
             }
         }

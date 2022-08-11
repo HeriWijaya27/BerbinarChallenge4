@@ -1,7 +1,6 @@
 package com.example.binarch4.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -31,22 +30,18 @@ class LandingPageActivity : AppCompatActivity() {
                 override fun onPageSelected(position: Int) {
                     if (position == 2) {
                         binding?.apply {
-                            btnNext.setTextColor(Color.WHITE)
-                            btnNext.text = textPlay
-                            btnNext.setOnClickListener {
+                            btnNextPage.text = textPlay
+                            btnNextPage.setOnClickListener {
                                 toMenu()
                             }
                         }
                     } else {
                         binding?.apply {
-                            btnNext.setTextColor(Color.WHITE)
-                            btnNext.text = textNext
-                            btnNext.setBackgroundResource(R.drawable.bg_purple)
-                            btnNext.setOnClickListener {
+                            btnNextPage.text = textNext
+                            btnNextPage.setBackgroundResource(R.drawable.bg_purple)
+                            btnNextPage.setOnClickListener {
                                 binding?.vpLandingPage?.apply {
-                                    beginFakeDrag()
-                                    fakeDragBy(-3f)
-                                    endFakeDrag()
+                                    vpLandingPage.currentItem = vpLandingPage.currentItem + 1
                                 }
                             }
                         }
@@ -65,16 +60,16 @@ class LandingPageActivity : AppCompatActivity() {
             startActivity(keMenu)
             finish()
         } else {
-            inputName.error = "NAMA TIDAK BOLEH KOSONG"
+            inputName.error = "NAME CANNOT BE EMPTY !"
             inputName.requestFocus()
         }
     }
 
     fun updateButton(isEnabled: Boolean) {
         if (isEnabled) {
-            binding?.btnNext?.setBackgroundResource(R.drawable.bg_btn_orange)
+            binding?.btnNextPage?.setBackgroundResource(R.drawable.bg_btn_orange)
         } else {
-            binding?.btnNext?.setBackgroundResource(R.drawable.bg_purple)
+            binding?.btnNextPage?.setBackgroundResource(R.drawable.bg_purple)
         }
     }
 }

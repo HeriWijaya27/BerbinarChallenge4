@@ -3,7 +3,7 @@ package com.example.binarch4.modul
 
 
 enum class Choice {
-    Batu,Kertas,Gunting;
+    ROCK,PAPER,SCISSOR;
 
     companion object {
         fun random(): Choice {
