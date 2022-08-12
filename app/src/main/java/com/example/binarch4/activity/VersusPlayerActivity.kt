@@ -26,7 +26,7 @@ class VersusPlayerActivity : AppCompatActivity() {
         binding = ActivityGameplayBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
-        val userName = intent.getStringExtra(NAME)
+        val userName = intent.getStringExtra(NAME)?.uppercase()
         Glide.with(this)
             .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
             .into(binding!!.ivBanner)
@@ -179,7 +179,7 @@ class VersusPlayerActivity : AppCompatActivity() {
 
 
     private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice) {
-        val playerName = intent.getStringExtra(NAME)
+        val playerName = intent.getStringExtra(NAME)?.uppercase()
         val player1Winning =
             CustomResultDialog(result = "$playerName WIN !", onReset = { resetAll() })
         val player2Winning = CustomResultDialog(result = "PLAYER 2 WIN !", onReset = { resetAll() })

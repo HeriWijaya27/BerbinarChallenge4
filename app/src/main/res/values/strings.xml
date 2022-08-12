@@ -1,26 +1,23 @@
 <resources>
     <string name="app_name">BinarCh4</string>
-    <string name="vs">VS</string>
+    <string name="vs">vs</string>
     <string name="player">PLAYER</string>
     <string name="computer">COMPUTER</string>
     <string name="choose_your_item">CHOOSE YOUR ITEM</string>
     <string name="com">COM</string>
     <string name="pilih_lawanmu">PILIH LAWANMU</string>
-    <string name="main_lagi">Main Lagi</string>
-    <string name="hasil_permainan">Hasil Permainan</string>
-    <string name="kembali_ke_menu">Kembali Ke Menu</string>
+    <string name="main_lagi">Play Again</string>
+    <string name="hasil_permainan">Game Result</string>
+    <string name="kembali_ke_menu">Back To Menu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bermain_suit_melawan_sesama_pemain">Bermain suit melawan sesama pemain.</string>
-    <string name="bermain_suit_melawan_komputer">Bermain suit melawan komputer.</string>
-    <string name="masukan_namamu_di_bawah">Masukan namamu di bawah</string>
     <string name="nama">Nama</string>
     <string name="cpu">CPU</string>
     <string name="seri">SERI!</string>
     <string name="ini_custom_toast">Ini Custom Toast</string>
     <string name="next">NEXT</string>
-    <string name="play_suit_game_against_friends">Play Suit Game Against Friends</string>
-    <string name="play_suit_game_againts_computer">Play Suit Game Againts Computer</string>
+    <string name="play_suit_game_against_friends">Play Rock-Paper-Scissor Game Against Friends</string>
+    <string name="play_suit_game_againts_computer">Play Rock-Paper-Scissor Game Againts Computer</string>
     <string name="input_your_name">Input Your Name</string>
     <string name="choose_your_enemy">CHOOSE YOUR ENEMY</string>
 </resources>

@@ -28,7 +28,7 @@ class CustomResultDialog(val result: String, val onReset: () -> Unit) : DialogFr
         dialog?.window?.setLayout(width, height)
 
 
-        dialog?.setCancelable(false)
+        dialog?.setCancelable(true)
         binding?.tvHasil?.text = result
 
         binding?.btnPlayAgain?.setOnClickListener {

@@ -30,6 +30,6 @@
         android:layout_margin="15dp"
         android:inputType="text"
         android:background="@drawable/bg_stroke_purple"
-        android:padding="3dp"/>
+        android:padding="10dp"/>
 
 </LinearLayout>

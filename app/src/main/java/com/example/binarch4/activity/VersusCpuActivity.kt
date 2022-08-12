@@ -25,7 +25,7 @@ class VersusCpuActivity : AppCompatActivity() {
         binding = ActivityGameplayBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
-        val userName = intent.getStringExtra(NAME)
+        val userName = intent.getStringExtra(NAME)?.uppercase()
         Glide.with(this)
             .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
             .into(binding!!.ivBanner)
@@ -52,7 +52,13 @@ class VersusCpuActivity : AppCompatActivity() {
                 showToast()
             }
             ivReset.setOnClickListener {
-                resetAll()
+                if (playerChoice != null && enemyChoice != null) {
+                    val toast = Toast.makeText(this@VersusCpuActivity,
+                        "$userName's & CPU's Choice Has Been Reset.Please Choose Again !",
+                        Toast.LENGTH_SHORT)
+                    toast.show()
+                    resetAll()
+                }
             }
             ivCloseVsCpu.setOnClickListener {
                 finish()
@@ -154,10 +160,10 @@ class VersusCpuActivity : AppCompatActivity() {
     }
 
     private fun showDialogResult(playerChoice: Choice, enemyChoice: Choice) {
-        val playerName = intent.getStringExtra(NAME)
+        val playerName = intent.getStringExtra(NAME)?.uppercase()
         val playerWinning = CustomResultDialog(result = "$playerName WIN !", onReset = { resetAll() })
         val cpuWinning = CustomResultDialog(result = "COMPUTER WIN !", onReset = { resetAll() })
-        val draw = CustomResultDialog(result = "DRAW !", onReset = { resetAll() })
+        val draw = CustomResultDialog(result = "DRAW !", onReset = {resetAll()})
 
 
         if (enemyChoice == playerChoice) {

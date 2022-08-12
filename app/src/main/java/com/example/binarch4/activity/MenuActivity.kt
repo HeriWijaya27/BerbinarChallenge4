@@ -27,8 +27,8 @@ class MenuActivity : AppCompatActivity() {
         val playerVsComputer = "$userName VS COMPUTER"
 
         binding?.apply {
-            tvPemainVsPemain.text = playerVsPlayer
-            tvPemainVsCpu.text = playerVsComputer
+            tvPemainVsPemain.text = playerVsPlayer.uppercase()
+            tvPemainVsCpu.text = playerVsComputer.uppercase()
             ivLawanPemain.setOnClickListener {
                 val versusPlayer = Intent(this@MenuActivity, VersusPlayerActivity::class.java)
                 versusPlayer.putExtra(NAME, userName)
@@ -45,7 +45,7 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun showSnackbar() {
-        val welcomeText = intent.getStringExtra(NAME)
+        val welcomeText = intent.getStringExtra(NAME)?.uppercase()
         binding?.llMenuActivity?.let {
             Snackbar.make(
                 it,
