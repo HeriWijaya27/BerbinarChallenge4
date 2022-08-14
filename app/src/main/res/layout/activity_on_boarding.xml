@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LandingPageActivity">
+    tools:context=".activity.OnBoardingActivity">
 
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/ciIndikator"
@@ -20,7 +20,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/vpLandingPage"
+        android:id="@+id/vpOnBoarding"
         android:layout_above="@id/ciIndikator"/>
 
     <androidx.appcompat.widget.AppCompatButton

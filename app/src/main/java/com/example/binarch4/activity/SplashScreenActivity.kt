@@ -23,7 +23,7 @@ class SplashScreenActivity : AppCompatActivity() {
             .into(binding!!.ivSplashImage)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, LandingPageActivity::class.java))
+            startActivity(Intent(this, OnBoardingActivity::class.java))
             finish()
         }, 3000)
 

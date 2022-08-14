@@ -19,7 +19,7 @@
             android:name=".activity.VersusPlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LandingPageActivity"
+            android:name=".activity.OnBoardingActivity"
             android:exported="true" />
         <activity
             android:name=".activity.SplashScreenActivity"

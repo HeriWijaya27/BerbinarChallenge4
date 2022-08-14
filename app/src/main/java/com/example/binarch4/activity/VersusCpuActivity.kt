@@ -60,7 +60,7 @@ class VersusCpuActivity : AppCompatActivity() {
                     resetAll()
                 }
             }
-            ivCloseVsCpu.setOnClickListener {
+            ivClose.setOnClickListener {
                 finish()
             }
         }

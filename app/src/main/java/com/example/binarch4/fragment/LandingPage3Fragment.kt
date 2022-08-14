@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.example.binarch4.activity.LandingPageActivity
+import com.example.binarch4.activity.OnBoardingActivity
 import com.example.binarch4.databinding.FragmentLandingPage3Binding
 
 
@@ -17,7 +17,7 @@ class LandingPage3Fragment : Fragment() {
     ): View {
         val binding = FragmentLandingPage3Binding.inflate(layoutInflater)
         binding.etUserName.addTextChangedListener {
-            (activity as LandingPageActivity?)?.updateButton(!it.isNullOrEmpty())
+            (activity as OnBoardingActivity?)?.updateButton(!it.isNullOrEmpty())
         }
         return binding.root
     }

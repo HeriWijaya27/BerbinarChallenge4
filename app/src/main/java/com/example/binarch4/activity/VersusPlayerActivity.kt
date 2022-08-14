@@ -72,7 +72,7 @@ class VersusPlayerActivity : AppCompatActivity() {
                     resetAll()
                 }
             }
-            ivCloseVsCpu.setOnClickListener {
+            ivClose.setOnClickListener {
                 finish()
             }
         }

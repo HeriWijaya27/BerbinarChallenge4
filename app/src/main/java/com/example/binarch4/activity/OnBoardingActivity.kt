@@ -7,42 +7,38 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.binarch4.R
 import com.example.binarch4.adapter.ViewPagerAdapter
-import com.example.binarch4.databinding.ActivityLandingPageViewBinding
+import com.example.binarch4.databinding.ActivityOnBoardingBinding
 
-class LandingPageActivity : AppCompatActivity() {
-    private var binding: ActivityLandingPageViewBinding? = null
+class OnBoardingActivity : AppCompatActivity() {
+    private var binding: ActivityOnBoardingBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLandingPageViewBinding.inflate(layoutInflater)
+        binding = ActivityOnBoardingBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         val viewPagerAdapter = ViewPagerAdapter(this)
 
         binding?.apply {
-            vpLandingPage.adapter = viewPagerAdapter
-            ciIndikator.setViewPager(binding?.vpLandingPage)
+            vpOnBoarding.adapter = viewPagerAdapter
+            ciIndikator.setViewPager(binding?.vpOnBoarding)
 
-            vpLandingPage.registerOnPageChangeCallback(object :
+            vpOnBoarding.registerOnPageChangeCallback(object :
                 ViewPager2.OnPageChangeCallback() {
                 val textPlay = "PLAY"
                 val textNext = "NEXT"
                 override fun onPageSelected(position: Int) {
                     if (position == 2) {
-                        binding?.apply {
-                            btnNextPage.text = textPlay
-                            btnNextPage.setOnClickListener {
-                                toMenu()
-                            }
+                        btnNextPage.text = textPlay
+                        btnNextPage.setOnClickListener {
+                            toMenu()
                         }
                     } else {
-                        binding?.apply {
-                            btnNextPage.text = textNext
-                            btnNextPage.setBackgroundResource(R.drawable.bg_purple)
-                            btnNextPage.setOnClickListener {
-                                binding?.vpLandingPage?.apply {
-                                    vpLandingPage.currentItem = vpLandingPage.currentItem + 1
-                                }
+                        btnNextPage.text = textNext
+                        btnNextPage.setBackgroundResource(R.drawable.bg_purple)
+                        btnNextPage.setOnClickListener {
+                            binding?.vpOnBoarding?.apply {
+                                vpOnBoarding.currentItem = vpOnBoarding.currentItem + 1
                             }
                         }
                     }
